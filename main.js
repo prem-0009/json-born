@@ -5,23 +5,18 @@ const data = fs.readFileSync("../students.json", "utf-8");
 const obj = JSON.parse(data);
 
 const getStudentByIndex = function (index) {
-  let result;
-
   for (let i = 0; i < obj.students.length; i++) {
     if (i === index) {
-      result = obj.students[i];
+      return obj.students[i];
     }
   }
-  // console.log("result", result);
-  return result;
 };
 
 const getStudentByName = function (name1) {
   let result;
   for (let i = 0; i < obj.students.length; i++) {
     if (obj.students[i].name === name1) {
-      result = obj.students[i];
-      return result;
+      return obj.students[i];
     }
   }
 
@@ -33,7 +28,7 @@ const graduateStudent = function (name1) {
     if (obj.students[i].name === name1) {
       //increasing the value of term
       obj.students[i].term++;
-      //stringify the obj for json file
+      //stringify--easy to read-- the obj for json file
       const backToJSON = JSON.stringify(obj, null, 2);
       //rewrite the content of json file
       fs.writeFileSync("../students.json", backToJSON);
